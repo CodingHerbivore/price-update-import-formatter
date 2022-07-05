@@ -1,0 +1,19 @@
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\bin\Debug\net6.0-windows\JME Price Update.exe
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\bin\Debug\net6.0-windows\JME Price Update.deps.json
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\bin\Debug\net6.0-windows\JME Price Update.runtimeconfig.json
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\bin\Debug\net6.0-windows\JME Price Update.dll
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\bin\Debug\net6.0-windows\JME Price Update.pdb
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.csproj.AssemblyReference.cache
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME_Price_Update.FrmPriceUpdate.resources
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.csproj.GenerateResource.cache
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.AssemblyInfoInputs.cache
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.AssemblyInfo.cs
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.csproj.CoreCompileInputs.cache
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.dll
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\refint\JME Price Update.dll
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.pdb
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.genruntimeconfig.cache
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\ref\JME Price Update.dll
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\Andrew\source\repos\JME Price Update\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.csproj.ResolveComReference.cache
