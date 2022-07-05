@@ -128,21 +128,43 @@ namespace JME_Price_Update
                 String PartNums = "";
                 for (int i = 1; i < eRng.Columns["D:D", Type.Missing].Rows.Count + 1; i++)
                 {
-                    PartNums = String.Concat(PartNums, eRng.Cells[i, 4].Value);
-                    PartNums = String.Concat(PartNums, "\n");
+                    String SKU = eRng.Cells[i, 4].Value;
 
-                    // Clean part number 
+                    // The UsedRange property includes cells that have been used in the past but are now empty, so we don't want to include those
+                    if (SKU == null)
+                    {
+                        break;
+                    }
+                    
+                    // Clean part number
+                    // Remove GRID_
+                    if (SKU.Contains("GRID_"))
+                    {
+                        SKU = SKU.Replace("GRID_", "");
+                    }
+                    
+                    // Remove lowercase letter indicating duplicate product
+                    char lastLetter = SKU[SKU.Length - 1];
+
+                    if (char.IsLower(lastLetter))
+                    {
+                        SKU = SKU.Remove(SKU.Length - 1);
+                    }
+
+
 
                     // Compare part number with update workbook
+
+                    PartNums = String.Concat(PartNums, SKU);
+                    PartNums = String.Concat(PartNums, "\n");
                 }
                 
                 
                 
                 MessageBox.Show(PartNums);
-                
+                CloseWorkbooks(uWB, eWB);
 
-                uWB.Close();
-                eWB.Close();
+                
             }
             catch (Exception ex)
             {
@@ -157,6 +179,12 @@ namespace JME_Price_Update
         private void FamilyBuilder()
         {
 
+        }
+
+        private void CloseWorkbooks(Excel._Workbook uWB, Excel._Workbook eWB)
+        {
+            uWB.Close();
+            eWB.Close();
         }
     }
 }

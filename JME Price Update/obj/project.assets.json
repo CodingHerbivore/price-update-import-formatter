@@ -8,23 +8,23 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Andrew\\.nuget\\packages\\": {},
+    "C:\\Users\\abullis\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrew\\source\\repos\\JME Price Update\\JME Price Update\\JME Price Update.csproj",
+      "projectUniqueName": "C:\\Users\\abullis\\Documents\\price update\\price-update-import-formatter\\JME Price Update\\JME Price Update.csproj",
       "projectName": "JME Price Update",
-      "projectPath": "C:\\Users\\Andrew\\source\\repos\\JME Price Update\\JME Price Update\\JME Price Update.csproj",
-      "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrew\\source\\repos\\JME Price Update\\JME Price Update\\obj\\",
+      "projectPath": "C:\\Users\\abullis\\Documents\\price update\\price-update-import-formatter\\JME Price Update\\JME Price Update.csproj",
+      "packagesPath": "C:\\Users\\abullis\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\abullis\\Documents\\price update\\price-update-import-formatter\\JME Price Update\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\abullis\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -32,8 +32,7 @@
         "net6.0-windows7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
       },
       "frameworks": {
         "net6.0-windows7.0": {
