@@ -129,7 +129,7 @@ public partial class FrmPriceUpdate : Form
             eRng = eSheet.UsedRange;
 
             // Working with the Update workbook
-            // Create List<T> of part numbers and prices from the update workbook
+            // Create dictionary of part numbers and prices from the update workbook
             var uPrices = new Dictionary<String, String>();
             
             for (int i = 1; i < uRng.Columns["A:A", Type.Missing].Rows.Count + 1; i++)
@@ -143,7 +143,16 @@ public partial class FrmPriceUpdate : Form
                 String SKU = uRng.Cells[i, 1].Value.ToString();
                 String uPrice = uRng.Cells[i, 3].Value.ToString();
 
-                uPrices.Add(SKU, uPrice);
+                // Adding a SKU that already exists will fail, so we check to ensure it isn't there.
+                bool skuExists = uPrices.ContainsKey(SKU);
+                if (!skuExists)
+                {
+                    uPrices.Add(SKU, uPrice);
+                }
+                else
+                {
+                    continue;
+                }    
             }
 
             // DEBUG: remove when finished
@@ -153,7 +162,7 @@ public partial class FrmPriceUpdate : Form
                 updates = String.Concat(updates, item);
                 updates = String.Concat(updates, "\n");
             }
-            //MessageBox.Show(updates);
+            MessageBox.Show(updates);
 
             // Working with the Exported workbook
             String PartNums = "";
@@ -170,9 +179,6 @@ public partial class FrmPriceUpdate : Form
                 }
                 
                 // Check if there's anything in the part number column, if not then skip
-                /*
-                 * **** TO-DO: This needs to be rewritten to build product families, as a lack of SKU indicates a parent product ****
-                 */
                 if (SKU == null)
                 {
                     if (eRng.Cells[i, 1].Value == "Product")
@@ -194,22 +200,24 @@ public partial class FrmPriceUpdate : Form
                             {
                                 // grab the price and then add it to a list
                                 String childSKU = eRng.Cells[j, 4].Value;
-
-                                if (uPrices.ContainsKey(childSKU))
+                                if (childSKU != null)
                                 {
-                                    // "Call for pricing" and "Not Found" don't count, so we need to go past them
-                                    Double s = 0;
-                                    bool canParse = double.TryParse(uPrices[childSKU], out s);
-                                    
-                                    if (canParse)
-                                    { 
-                                        // Price comes over as a string, but we need it to be a double
-                                        Double childPrice = Convert.ToDouble(uPrices[childSKU], CultureInfo.InvariantCulture);
-                                        myFamily.Add(childPrice);
-                                    }
-                                    else
+                                    if (uPrices.ContainsKey(childSKU))
                                     {
-                                        continue;
+                                        // "Call for pricing" and "Not Found" don't count, so we need to go past them
+                                        Double s = 0;
+                                        bool canParse = double.TryParse(uPrices[childSKU], out s);
+                                    
+                                        if (canParse)
+                                        { 
+                                            // Price comes over as a string, but we need it to be a double
+                                            Double childPrice = Convert.ToDouble(uPrices[childSKU], CultureInfo.InvariantCulture);
+                                            myFamily.Add(childPrice);
+                                        }
+                                        else
+                                        {
+                                            continue;
+                                        }
                                     }
                                 }
                             }
@@ -223,8 +231,16 @@ public partial class FrmPriceUpdate : Form
                             }
                         }
 
-                        double minPrice = myFamily.Min();
-                        nPrice = minPrice.ToString();
+                        if (myFamily.Count > 0)
+                        {
+                            double minPrice = myFamily.Min();
+                            nPrice = minPrice.ToString();
+                        }
+                        else 
+                        {
+                            nPrice = "ERROR";
+                            eRng.Cells[i, 17].Interior.Color = Excel.XlRgbColor.rgbRed;
+                        }
 
                         // Write value to spreadsheet
                         eRng.Cells[i, 17].Value = nPrice;
@@ -285,12 +301,20 @@ public partial class FrmPriceUpdate : Form
                 {
                     eRng.Cells[i, 17].Interior.Color = Excel.XlRgbColor.rgbRed;
                 }
-                /*PartNums = String.Concat(PartNums, SKU);
+                /*
+                 * **** DEBUG: Remove when deployed ****
+                 */
+                PartNums = String.Concat(PartNums, SKU);
                 PartNums = String.Concat(PartNums, ", " + nPrice);
-                PartNums = String.Concat(PartNums, "\n");*/
+                PartNums = String.Concat(PartNums, "\n");
+                // END DEBUG
             }
-            
-            //MessageBox.Show(PartNums);
+
+            /*
+             * **** DEBUG: Remove when deployed ****
+             */
+            MessageBox.Show(PartNums);
+            // END DEBUG
             uWB.Close();
             eWB.Close();
             oXL.Quit();
