@@ -40,8 +40,8 @@
             this.cmbPriceColumn = new System.Windows.Forms.ComboBox();
             this.lblWarning = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
-            this.lblNotWorking = new System.Windows.Forms.Label();
             this.lblBePatient = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSelectUpdateBook
@@ -147,17 +147,6 @@
             this.lblContact.TabIndex = 9;
             this.lblContact.Text = "Email Andrew B. with bugs or issues: abullis@jmesales.com";
             // 
-            // lblNotWorking
-            // 
-            this.lblNotWorking.AutoSize = true;
-            this.lblNotWorking.ForeColor = System.Drawing.Color.Red;
-            this.lblNotWorking.Location = new System.Drawing.Point(82, 87);
-            this.lblNotWorking.Name = "lblNotWorking";
-            this.lblNotWorking.Size = new System.Drawing.Size(337, 15);
-            this.lblNotWorking.TabIndex = 10;
-            this.lblNotWorking.Text = "This drop down is not connected yet (keep prices in column C)";
-            this.lblNotWorking.Click += new System.EventHandler(this.label1_Click);
-            // 
             // lblBePatient
             // 
             this.lblBePatient.AutoSize = true;
@@ -167,13 +156,22 @@
             this.lblBePatient.TabIndex = 11;
             this.lblBePatient.Text = "Be patient! This will work or generate an error.";
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(725, 426);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(63, 15);
+            this.lblVersion.TabIndex = 12;
+            this.lblVersion.Text = "version 0.2";
+            // 
             // FrmPriceUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblBePatient);
-            this.Controls.Add(this.lblNotWorking);
             this.Controls.Add(this.lblContact);
             this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.cmbPriceColumn);
@@ -205,7 +203,7 @@
         private ComboBox cmbPriceColumn;
         private Label lblWarning;
         private Label lblContact;
-        private Label lblNotWorking;
         private Label lblBePatient;
+        private Label lblVersion;
     }
 }
