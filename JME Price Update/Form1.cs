@@ -96,7 +96,10 @@ public partial class FrmPriceUpdate : Form
         {
             errorMessage = String.Concat(errorMessage, "You must select the exported workbook from BigCommerce. ");
         }
-
+        if (txtExportBook.Text == txtUpdateBook.Text)
+        {
+            errorMessage = String.Concat(errorMessage, "\n" + "The workbooks cannot be the same. Select a different update or export workbook.");
+        }
         if (errorMessage != null)
         {
             MessageBox.Show(errorMessage);
@@ -104,6 +107,13 @@ public partial class FrmPriceUpdate : Form
         else
         {
             UpdatePrice();
+
+            // Clean up
+            txtUpdateBook.Text = "";
+            cmbPriceColumn.Items.Clear();
+            cmbPriceColumn.Text = "";
+            cmbPriceColumn.Enabled = false;
+            txtExportBook.Text = "";
         }
     }
 
@@ -173,8 +183,14 @@ public partial class FrmPriceUpdate : Form
             for (int i = 2; i < eRng.Columns["D:D", Type.Missing].Rows.Count + 1; i++)
             {
                 String SKU = eRng.Cells[i, 4].Value;
+                String currentPrice = "";
                 String nPrice = "";
+                String nMessage = "";
 
+                if (eRng.Cells[i, 7].Value != null)
+                {
+                    currentPrice = eRng.Cells[i, 7].Value.ToString();
+                }
                 // The UsedRange property includes cells that have been used in the past but are now empty, so we don't want to include those
                 // We check the first column, because that should always include some value (Product, SKU, or Rule)if the row has data.
                 if (eRng.Cells[i, 1].Value == null)
@@ -220,7 +236,20 @@ public partial class FrmPriceUpdate : Form
                                         }
                                         else
                                         {
-                                            continue;
+                                            if (currentPrice == "")
+                                            {
+                                                continue;
+                                            }
+                                            else if (currentPrice.Contains("[FIXED]"))
+                                            {
+                                                currentPrice = currentPrice.Replace("[FIXED]", "");
+                                                Double currentChildPrice = Convert.ToDouble(currentPrice, CultureInfo.InvariantCulture);
+                                                myFamily.Add(currentChildPrice);
+                                            }
+                                            else
+                                            {
+                                                continue;
+                                            }
                                         }
                                     }
                                 }
@@ -242,8 +271,10 @@ public partial class FrmPriceUpdate : Form
                         }
                         else 
                         {
-                            nPrice = "ERROR";
-                            eRng.Cells[i, 17].Interior.Color = Excel.XlRgbColor.rgbRed;
+                            nPrice = currentPrice;
+                            nMessage = "No child has new Price";
+                            eRng.Cells[i, 18].Value = nMessage;
+                            eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbRed;
                         }
 
                         // Write value to spreadsheet
@@ -283,33 +314,39 @@ public partial class FrmPriceUpdate : Form
                 }
                 else
                 {
-                    nPrice = "Not Found";
+                    nPrice = currentPrice;
+                    nMessage = "Not Found";
                 }
 
-                // Write value to spreadsheet
-                String prodType = eRng.Cells[i, 1].Value;
-                prodType = prodType.Trim();
-                if (prodType == "Rule")
-                {
-                    eRng.Cells[i, 17].Value = "[FIXED]" + nPrice;
-                }
-                else
-                {
-                    eRng.Cells[i, 17].Value = nPrice;
-                }
-                
                 // Change background color to red if nPrice isn't a number (if it's CFP or whatevs)
                 Double testDouble = 0;
                 bool notCFP = double.TryParse(nPrice, out testDouble);
                 if (!notCFP)
                 {
-                    if (nPrice == "Not Found")
+                    if (nMessage == "Not Found")
                     {
-                        eRng.Cells[i, 17].Interior.Color = Excel.XlRgbColor.rgbRed;
+                        eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbRed;
                     }
                     else
                     {
-                        eRng.Cells[i, 17].Interior.Color = Excel.XlRgbColor.rgbYellow;
+                        eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbYellow;
+                        nMessage = nPrice;
+                    }
+                    eRng.Cells[i, 18].Value = nMessage;
+                    eRng.Cells[i, 17].Value = currentPrice;
+                }
+                else
+                {
+                    // Write value to spreadsheet
+                    String prodType = eRng.Cells[i, 1].Value;
+                    prodType = prodType.Trim();
+                    if (prodType == "Rule")
+                    {
+                        eRng.Cells[i, 17].Value = "[FIXED]" + nPrice;
+                    }
+                    else
+                    {
+                        eRng.Cells[i, 17].Value = nPrice;
                     }
                 }
                 /*
@@ -327,6 +364,7 @@ public partial class FrmPriceUpdate : Form
             //MessageBox.Show(PartNums);
             // END DEBUG
             uWB.Close();
+            eWB.Save();
             eWB.Close();
             oXL.Quit();
 
@@ -343,9 +381,5 @@ public partial class FrmPriceUpdate : Form
     private void CloseWorkbooks(Excel._Workbook uWB, Excel._Workbook eWB)
     {
         
-    }
-    private void label1_Click(object sender, EventArgs e)
-    {
-
     }
 }

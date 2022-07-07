@@ -163,7 +163,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(63, 15);
             this.lblVersion.TabIndex = 12;
-            this.lblVersion.Text = "version 0.2";
+            this.lblVersion.Text = "version 0.3";
             // 
             // FrmPriceUpdate
             // 

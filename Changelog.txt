@@ -1,0 +1,5 @@
+Version 0.3
+- Cleaned out fields after the program is run, so that it can be run multiple times without closing
+- Added check to make sure the two workbooks are not the same
+- Added code to save workbook automatically
+- Rewrote several portions of program to use the current price if product is not in the update spreadsheet or has a message instead of updated price.
