@@ -40,8 +40,8 @@
             this.cmbPriceColumn = new System.Windows.Forms.ComboBox();
             this.lblWarning = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
-            this.lblBePatient = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.prgUpdateSpreadsheet = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // btnSelectUpdateBook
@@ -100,7 +100,7 @@
             // 
             // btnUpdatePrices
             // 
-            this.btnUpdatePrices.Location = new System.Drawing.Point(315, 236);
+            this.btnUpdatePrices.Location = new System.Drawing.Point(324, 236);
             this.btnUpdatePrices.Name = "btnUpdatePrices";
             this.btnUpdatePrices.Size = new System.Drawing.Size(125, 35);
             this.btnUpdatePrices.TabIndex = 6;
@@ -131,7 +131,7 @@
             // 
             this.lblWarning.AutoSize = true;
             this.lblWarning.ForeColor = System.Drawing.Color.Red;
-            this.lblWarning.Location = new System.Drawing.Point(118, 315);
+            this.lblWarning.Location = new System.Drawing.Point(94, 354);
             this.lblWarning.Name = "lblWarning";
             this.lblWarning.Size = new System.Drawing.Size(585, 15);
             this.lblWarning.TabIndex = 8;
@@ -141,37 +141,37 @@
             // lblContact
             // 
             this.lblContact.AutoSize = true;
-            this.lblContact.Location = new System.Drawing.Point(235, 347);
+            this.lblContact.Location = new System.Drawing.Point(227, 386);
             this.lblContact.Name = "lblContact";
             this.lblContact.Size = new System.Drawing.Size(319, 15);
             this.lblContact.TabIndex = 9;
             this.lblContact.Text = "Email Andrew B. with bugs or issues: abullis@jmesales.com";
-            // 
-            // lblBePatient
-            // 
-            this.lblBePatient.AutoSize = true;
-            this.lblBePatient.Location = new System.Drawing.Point(462, 246);
-            this.lblBePatient.Name = "lblBePatient";
-            this.lblBePatient.Size = new System.Drawing.Size(247, 15);
-            this.lblBePatient.TabIndex = 11;
-            this.lblBePatient.Text = "Be patient! This will work or generate an error.";
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Location = new System.Drawing.Point(725, 426);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(63, 15);
+            this.lblVersion.Size = new System.Drawing.Size(69, 15);
             this.lblVersion.TabIndex = 12;
-            this.lblVersion.Text = "version 0.3";
+            this.lblVersion.Text = "version 0.31";
+            // 
+            // prgUpdateSpreadsheet
+            // 
+            this.prgUpdateSpreadsheet.Enabled = false;
+            this.prgUpdateSpreadsheet.Location = new System.Drawing.Point(71, 299);
+            this.prgUpdateSpreadsheet.Name = "prgUpdateSpreadsheet";
+            this.prgUpdateSpreadsheet.Size = new System.Drawing.Size(631, 23);
+            this.prgUpdateSpreadsheet.TabIndex = 13;
+            this.prgUpdateSpreadsheet.Visible = false;
             // 
             // FrmPriceUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.prgUpdateSpreadsheet);
             this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.lblBePatient);
             this.Controls.Add(this.lblContact);
             this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.cmbPriceColumn);
@@ -203,7 +203,7 @@
         private ComboBox cmbPriceColumn;
         private Label lblWarning;
         private Label lblContact;
-        private Label lblBePatient;
         private Label lblVersion;
+        private ProgressBar prgUpdateSpreadsheet;
     }
 }

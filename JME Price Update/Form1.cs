@@ -106,6 +106,8 @@ public partial class FrmPriceUpdate : Form
         }
         else
         {
+            btnUpdatePrices.Enabled = false;
+            
             UpdatePrice();
 
             // Clean up
@@ -114,6 +116,9 @@ public partial class FrmPriceUpdate : Form
             cmbPriceColumn.Text = "";
             cmbPriceColumn.Enabled = false;
             txtExportBook.Text = "";
+            prgUpdateSpreadsheet.Visible = false;
+            prgUpdateSpreadsheet.Enabled = false;
+            btnUpdatePrices.Enabled = true;
         }
     }
 
@@ -138,6 +143,15 @@ public partial class FrmPriceUpdate : Form
             eSheet = eWB.Worksheets[1];
             uRng = uSheet.UsedRange;
             eRng = eSheet.UsedRange;
+            int actualRows = howManyRows(eSheet, eRng);
+
+            // Setup progress bar
+            prgUpdateSpreadsheet.Enabled = true;
+            prgUpdateSpreadsheet.Minimum = 1;
+            prgUpdateSpreadsheet.Maximum = actualRows - 1;
+            prgUpdateSpreadsheet.Visible = true;
+            prgUpdateSpreadsheet.Value = 1;
+            prgUpdateSpreadsheet.Step = 1;
 
             // Get the user-selected price column and add 1 since Excel isn't zero-based
             int priceColumn = cmbPriceColumn.SelectedIndex + 1;
@@ -283,11 +297,13 @@ public partial class FrmPriceUpdate : Form
                         /*PartNums = String.Concat(PartNums, "Parent");
                         PartNums = String.Concat(PartNums, ", " + nPrice);
                         PartNums = String.Concat(PartNums, "\n");*/
-
+                        
+                        updateProgressBar();
                         continue;
                     }
                     else
                     {
+                        updateProgressBar();
                         continue;
                     }
                 }
@@ -356,6 +372,8 @@ public partial class FrmPriceUpdate : Form
                 PartNums = String.Concat(PartNums, ", " + nPrice);
                 PartNums = String.Concat(PartNums, "\n");*/
                 // END DEBUG
+
+                updateProgressBar();
             }
 
             /*
@@ -376,6 +394,26 @@ public partial class FrmPriceUpdate : Form
         }
 
         MessageBox.Show("Spreadsheet updated");
+    }
+
+    private void updateProgressBar ()
+    {
+        // Increment progress bar
+        prgUpdateSpreadsheet.PerformStep();
+    }
+
+    public static int howManyRows(Excel._Worksheet eSheet, Excel.Range eRng)
+    {
+        int rows = 0;
+        for (int i = 1; i < eRng.Columns["A:A", Type.Missing].Rows.Count + 1; i++)
+        {
+            if (eRng.Cells[i, 1].Value == null)
+            {
+                break;
+            }
+            rows++;
+        }
+        return rows;
     }
 
     private void CloseWorkbooks(Excel._Workbook uWB, Excel._Workbook eWB)
