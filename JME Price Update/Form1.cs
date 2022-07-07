@@ -59,6 +59,7 @@ public partial class FrmPriceUpdate : Form
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex );
+                MessageBox.Show("You may need to kill Excel from Windows Task Manager to unlock the workbooks");
             }
           
         }
@@ -86,10 +87,10 @@ public partial class FrmPriceUpdate : Form
             errorMessage = String.Concat(errorMessage, "You must select the workbook with the price updates.\n");
         }
 
-        //if (cmbPriceColumn.SelectedValue == null)
-        //{
-        //    errorMessage = String.Concat(errorMessage, "You must select the column with the price.\n");
-        //}
+        if (cmbPriceColumn.SelectedIndex == -1)
+        {
+            errorMessage = String.Concat(errorMessage, "You must select the column with the price.\n");
+        }
 
         if (txtExportBook.Text == "" )
         {
@@ -128,6 +129,9 @@ public partial class FrmPriceUpdate : Form
             uRng = uSheet.UsedRange;
             eRng = eSheet.UsedRange;
 
+            // Get the user-selected price column and add 1 since Excel isn't zero-based
+            int priceColumn = cmbPriceColumn.SelectedIndex + 1;
+            
             // Working with the Update workbook
             // Create dictionary of part numbers and prices from the update workbook
             var uPrices = new Dictionary<String, String>();
@@ -141,7 +145,7 @@ public partial class FrmPriceUpdate : Form
                 }
 
                 String SKU = uRng.Cells[i, 1].Value.ToString();
-                String uPrice = uRng.Cells[i, 3].Value.ToString();
+                String uPrice = uRng.Cells[i, priceColumn].Value.ToString();
 
                 // Adding a SKU that already exists will fail, so we check to ensure it isn't there.
                 bool skuExists = uPrices.ContainsKey(SKU);
@@ -156,13 +160,13 @@ public partial class FrmPriceUpdate : Form
             }
 
             // DEBUG: remove when finished
-            String updates = "";
+            /* String updates = "";
             foreach (KeyValuePair<String,String> item in uPrices)
             {
                 updates = String.Concat(updates, item);
                 updates = String.Concat(updates, "\n");
             }
-            MessageBox.Show(updates);
+            MessageBox.Show(updates);*/
 
             // Working with the Exported workbook
             String PartNums = "";
@@ -299,21 +303,28 @@ public partial class FrmPriceUpdate : Form
                 bool notCFP = double.TryParse(nPrice, out testDouble);
                 if (!notCFP)
                 {
-                    eRng.Cells[i, 17].Interior.Color = Excel.XlRgbColor.rgbRed;
+                    if (nPrice == "Not Found")
+                    {
+                        eRng.Cells[i, 17].Interior.Color = Excel.XlRgbColor.rgbRed;
+                    }
+                    else
+                    {
+                        eRng.Cells[i, 17].Interior.Color = Excel.XlRgbColor.rgbYellow;
+                    }
                 }
                 /*
                  * **** DEBUG: Remove when deployed ****
                  */
-                PartNums = String.Concat(PartNums, SKU);
+                /*PartNums = String.Concat(PartNums, SKU);
                 PartNums = String.Concat(PartNums, ", " + nPrice);
-                PartNums = String.Concat(PartNums, "\n");
+                PartNums = String.Concat(PartNums, "\n");*/
                 // END DEBUG
             }
 
             /*
              * **** DEBUG: Remove when deployed ****
              */
-            MessageBox.Show(PartNums);
+            //MessageBox.Show(PartNums);
             // END DEBUG
             uWB.Close();
             eWB.Close();
@@ -323,13 +334,18 @@ public partial class FrmPriceUpdate : Form
         catch (Exception ex)
         {
             MessageBox.Show("Error: " + ex);
+            MessageBox.Show("You may need to kill Excel from Windows Task Manager to unlock the workbooks");
         }
 
-        MessageBox.Show("Task failed successfully");
+        MessageBox.Show("Spreadsheet updated");
     }
 
     private void CloseWorkbooks(Excel._Workbook uWB, Excel._Workbook eWB)
     {
         
+    }
+    private void label1_Click(object sender, EventArgs e)
+    {
+
     }
 }

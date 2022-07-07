@@ -38,7 +38,10 @@
             this.ofdUpdateBook = new System.Windows.Forms.OpenFileDialog();
             this.ofdExportBook = new System.Windows.Forms.OpenFileDialog();
             this.cmbPriceColumn = new System.Windows.Forms.ComboBox();
-            this.btnExcelTest = new System.Windows.Forms.Button();
+            this.lblWarning = new System.Windows.Forms.Label();
+            this.lblContact = new System.Windows.Forms.Label();
+            this.lblNotWorking = new System.Windows.Forms.Label();
+            this.lblBePatient = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSelectUpdateBook
@@ -124,22 +127,55 @@
             this.cmbPriceColumn.Size = new System.Drawing.Size(224, 23);
             this.cmbPriceColumn.TabIndex = 7;
             // 
-            // btnExcelTest
+            // lblWarning
             // 
-            this.btnExcelTest.Location = new System.Drawing.Point(338, 384);
-            this.btnExcelTest.Name = "btnExcelTest";
-            this.btnExcelTest.Size = new System.Drawing.Size(75, 23);
-            this.btnExcelTest.TabIndex = 8;
-            this.btnExcelTest.Text = "test";
-            this.btnExcelTest.UseVisualStyleBackColor = true;
-            
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.ForeColor = System.Drawing.Color.Red;
+            this.lblWarning.Location = new System.Drawing.Point(118, 315);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(585, 15);
+            this.lblWarning.TabIndex = 8;
+            this.lblWarning.Text = "TESTING VERSION: This software is pre-release test version. Use at your own risk," +
+    " your safety is not guaranteed.";
+            // 
+            // lblContact
+            // 
+            this.lblContact.AutoSize = true;
+            this.lblContact.Location = new System.Drawing.Point(235, 347);
+            this.lblContact.Name = "lblContact";
+            this.lblContact.Size = new System.Drawing.Size(319, 15);
+            this.lblContact.TabIndex = 9;
+            this.lblContact.Text = "Email Andrew B. with bugs or issues: abullis@jmesales.com";
+            // 
+            // lblNotWorking
+            // 
+            this.lblNotWorking.AutoSize = true;
+            this.lblNotWorking.ForeColor = System.Drawing.Color.Red;
+            this.lblNotWorking.Location = new System.Drawing.Point(82, 87);
+            this.lblNotWorking.Name = "lblNotWorking";
+            this.lblNotWorking.Size = new System.Drawing.Size(337, 15);
+            this.lblNotWorking.TabIndex = 10;
+            this.lblNotWorking.Text = "This drop down is not connected yet (keep prices in column C)";
+            this.lblNotWorking.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lblBePatient
+            // 
+            this.lblBePatient.AutoSize = true;
+            this.lblBePatient.Location = new System.Drawing.Point(462, 246);
+            this.lblBePatient.Name = "lblBePatient";
+            this.lblBePatient.Size = new System.Drawing.Size(247, 15);
+            this.lblBePatient.TabIndex = 11;
+            this.lblBePatient.Text = "Be patient! This will work or generate an error.";
             // 
             // FrmPriceUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnExcelTest);
+            this.Controls.Add(this.lblBePatient);
+            this.Controls.Add(this.lblNotWorking);
+            this.Controls.Add(this.lblContact);
+            this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.cmbPriceColumn);
             this.Controls.Add(this.btnUpdatePrices);
             this.Controls.Add(this.lblExportBook);
@@ -167,6 +203,9 @@
         private OpenFileDialog ofdUpdateBook;
         private OpenFileDialog ofdExportBook;
         private ComboBox cmbPriceColumn;
-        private Button btnExcelTest;
+        private Label lblWarning;
+        private Label lblContact;
+        private Label lblNotWorking;
+        private Label lblBePatient;
     }
 }
