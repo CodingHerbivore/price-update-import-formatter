@@ -19,13 +19,21 @@ public partial class FrmPriceUpdate : Form
 
     private void btnSelectUpdateBook_Click(object sender, EventArgs e)
     {
+        /* If the combo box is enabled, it means that the user selected the wrong sheet and is 
+         * selecting a different one. This check fixes a bug where it stacked up columns from
+         * multiple sheets.*/
+        if (cmbPriceColumn.Enabled == true)
+        {
+            ClearComboBox();
+        }
+
         if (ofdUpdateBook.ShowDialog() == DialogResult.OK)
         {
             // Display the file path in the text box
             txtUpdateBook.Text = ofdUpdateBook.FileName;
 
             // Assign the file to a variable
-            String UpdateBook = ofdUpdateBook.FileName;
+            string UpdateBook = ofdUpdateBook.FileName;
 
             try
             {
@@ -73,32 +81,32 @@ public partial class FrmPriceUpdate : Form
             txtExportBook.Text = ofdExportBook.FileName;
 
             // Assign the file to a variable
-            String ExportBook = ofdExportBook.FileName;
+            string ExportBook = ofdExportBook.FileName;
 
         }
     }
 
     private void btnUpdatePrices_Click(object sender, EventArgs e)
     {
-        String errorMessage = null;
+        string errorMessage = null;
 
         if (txtUpdateBook.Text == "")
         {
-            errorMessage = String.Concat(errorMessage, "You must select the workbook with the price updates.\n");
+            errorMessage = string.Concat(errorMessage, "You must select the workbook with the price updates.\n");
         }
 
         if (cmbPriceColumn.SelectedIndex == -1)
         {
-            errorMessage = String.Concat(errorMessage, "You must select the column with the price.\n");
+            errorMessage = string.Concat(errorMessage, "You must select the column with the price.\n");
         }
 
         if (txtExportBook.Text == "" )
         {
-            errorMessage = String.Concat(errorMessage, "You must select the exported workbook from BigCommerce. ");
+            errorMessage = string.Concat(errorMessage, "You must select the exported workbook from BigCommerce. ");
         }
         if (txtExportBook.Text == txtUpdateBook.Text)
         {
-            errorMessage = String.Concat(errorMessage, "\n" + "The workbooks cannot be the same. Select a different update or export workbook.");
+            errorMessage = string.Concat(errorMessage, "\n" + "The workbooks cannot be the same. Select a different update or export workbook.");
         }
         if (errorMessage != null)
         {
@@ -112,20 +120,21 @@ public partial class FrmPriceUpdate : Form
 
             // Clean up
             txtUpdateBook.Text = "";
-            cmbPriceColumn.Items.Clear();
-            cmbPriceColumn.Text = "";
-            cmbPriceColumn.Enabled = false;
+            
+            ClearComboBox();
+            
             txtExportBook.Text = "";
             prgUpdateSpreadsheet.Visible = false;
             prgUpdateSpreadsheet.Enabled = false;
             btnUpdatePrices.Enabled = true;
+            lblStatus.Visible = false;
         }
     }
 
     private void UpdatePrice()
     {
-        String uwbPath = txtUpdateBook.Text;
-        String ewbPath = txtExportBook.Text;
+        string uwbPath = txtUpdateBook.Text;
+        string ewbPath = txtExportBook.Text;
 
         Excel._Workbook uWB;
         Excel._Worksheet uSheet;
@@ -143,7 +152,8 @@ public partial class FrmPriceUpdate : Form
             eSheet = eWB.Worksheets[1];
             uRng = uSheet.UsedRange;
             eRng = eSheet.UsedRange;
-            int actualRows = howManyRows(eSheet, eRng);
+            int actualUpdateRows = howManyRows(uSheet, uRng, prgUpdateSpreadsheet, lblStatus, "Counting Update Sheet Rows");
+            int actualRows = howManyRows(eSheet, eRng, prgUpdateSpreadsheet, lblStatus, "Counting Export Sheet Rows");
 
             // Setup progress bar
             prgUpdateSpreadsheet.Enabled = true;
@@ -152,24 +162,31 @@ public partial class FrmPriceUpdate : Form
             prgUpdateSpreadsheet.Visible = true;
             prgUpdateSpreadsheet.Value = 1;
             prgUpdateSpreadsheet.Step = 1;
+            lblStatus.Visible = true;
+            lblStatus.Text = "Updating Prices";
 
             // Get the user-selected price column and add 1 since Excel isn't zero-based
             int priceColumn = cmbPriceColumn.SelectedIndex + 1;
             
             // Working with the Update workbook
             // Create dictionary of part numbers and prices from the update workbook
-            var uPrices = new Dictionary<String, String>();
+            var uPrices = new Dictionary<string, string>();
             
-            for (int i = 1; i < uRng.Columns["A:A", Type.Missing].Rows.Count + 1; i++)
+            for (int i = 1; i < actualUpdateRows + 1; i++)
             {
-                // The UsedRange property includes cells that have been used in the past but are now empty, so we don't want to include those
-                if (uRng.Cells[i, 1].Value == null)
-                {
-                    break;
-                }
 
-                String SKU = uRng.Cells[i, 1].Value.ToString();
-                String uPrice = uRng.Cells[i, priceColumn].Value.ToString();
+                string SKU = uRng.Cells[i, 1].Value.ToString();
+                string uPrice = "";
+                /* Excel errors are for some reason stored as integers, which don't get caught.
+                 * We need to account for them, otherwise they pop up as prices */
+                if (uRng.Cells[i, priceColumn].Value is Int32)
+                {
+                    uPrice = "Excel Error - have pricing check their formula";
+                }
+                else
+                {
+                    uPrice = uRng.Cells[i, priceColumn].Value.ToString();
+                }
 
                 // Adding a SKU that already exists will fail, so we check to ensure it isn't there.
                 bool skuExists = uPrices.ContainsKey(SKU);
@@ -193,23 +210,17 @@ public partial class FrmPriceUpdate : Form
             MessageBox.Show(updates);*/
 
             // Working with the Exported workbook
-            String PartNums = "";
-            for (int i = 2; i < eRng.Columns["D:D", Type.Missing].Rows.Count + 1; i++)
+            //string PartNums = "";
+            for (int i = 2; i < actualRows + 1; i++)
             {
-                String SKU = eRng.Cells[i, 4].Value;
-                String currentPrice = "";
-                String nPrice = "";
-                String nMessage = "";
+                string SKU = eRng.Cells[i, 4].Value;
+                string currentPrice = "";
+                string nPrice = "";
+                string nMessage = "";
 
                 if (eRng.Cells[i, 7].Value != null)
                 {
                     currentPrice = eRng.Cells[i, 7].Value.ToString();
-                }
-                // The UsedRange property includes cells that have been used in the past but are now empty, so we don't want to include those
-                // We check the first column, because that should always include some value (Product, SKU, or Rule)if the row has data.
-                if (eRng.Cells[i, 1].Value == null)
-                {
-                    break;
                 }
                 
                 // Check if there's anything in the part number column, if not then skip
@@ -218,12 +229,12 @@ public partial class FrmPriceUpdate : Form
                     if (eRng.Cells[i, 1].Value == "Product")
                     {
                         // Create list to hold family member prices
-                        List<Double> myFamily = new List<Double>();
+                        List<double> myFamily = new List<double>();
                         
                         // Get children
-                        for (int j = i + 1; j < eRng.Columns["A:A", Type.Missing].Rows.Count + 1; j++)
+                        for (int j = i + 1; j < actualRows + 1; j++)
                         {
-                            String cellValue = eRng.Cells[j, 1].Value;
+                            string cellValue = eRng.Cells[j, 1].Value;
                             cellValue = cellValue.Trim();
 
                             if (cellValue == "SKU")
@@ -238,14 +249,11 @@ public partial class FrmPriceUpdate : Form
                                 {
                                     if (uPrices.ContainsKey(childSKU))
                                     {
-                                        // "Call for pricing" and "Not Found" don't count, so we need to go past them
-                                        Double s = 0;
-                                        bool canParse = double.TryParse(uPrices[childSKU], out s);
-                                    
-                                        if (canParse)
+                                        // "Call for pricing" and "Not Found" don't count, so we need to go past them                                    
+                                        if (canParse(uPrices[childSKU]))
                                         { 
                                             // Price comes over as a string, but we need it to be a double
-                                            Double childPrice = Convert.ToDouble(uPrices[childSKU], CultureInfo.InvariantCulture);
+                                            double childPrice = Convert.ToDouble(uPrices[childSKU], CultureInfo.InvariantCulture);
                                             myFamily.Add(childPrice);
                                         }
                                         else
@@ -257,7 +265,7 @@ public partial class FrmPriceUpdate : Form
                                             else if (currentPrice.Contains("[FIXED]"))
                                             {
                                                 currentPrice = currentPrice.Replace("[FIXED]", "");
-                                                Double currentChildPrice = Convert.ToDouble(currentPrice, CultureInfo.InvariantCulture);
+                                                double currentChildPrice = Convert.ToDouble(currentPrice, CultureInfo.InvariantCulture);
                                                 myFamily.Add(currentChildPrice);
                                             }
                                             else
@@ -335,9 +343,7 @@ public partial class FrmPriceUpdate : Form
                 }
 
                 // Change background color to red if nPrice isn't a number (if it's CFP or whatevs)
-                Double testDouble = 0;
-                bool notCFP = double.TryParse(nPrice, out testDouble);
-                if (!notCFP)
+                if (!canParse(nPrice))
                 {
                     if (nMessage == "Not Found")
                     {
@@ -354,7 +360,7 @@ public partial class FrmPriceUpdate : Form
                 else
                 {
                     // Write value to spreadsheet
-                    String prodType = eRng.Cells[i, 1].Value;
+                    string prodType = eRng.Cells[i, 1].Value;
                     prodType = prodType.Trim();
                     if (prodType == "Rule")
                     {
@@ -402,18 +408,51 @@ public partial class FrmPriceUpdate : Form
         prgUpdateSpreadsheet.PerformStep();
     }
 
-    public static int howManyRows(Excel._Worksheet eSheet, Excel.Range eRng)
+    // Get the actual number of rows used (eliminates previously-used-but-now-empty cells)
+    public static int howManyRows(Excel._Worksheet Sheet, Excel.Range Rng, ProgressBar prgUpdateSpreadsheet, Label lblStatus, string userMsg)
     {
         int rows = 0;
-        for (int i = 1; i < eRng.Columns["A:A", Type.Missing].Rows.Count + 1; i++)
+
+        // Setup progress bar
+        prgUpdateSpreadsheet.Enabled = true;
+        prgUpdateSpreadsheet.Minimum = 1;
+        prgUpdateSpreadsheet.Maximum = Rng.Columns["A:A", Type.Missing].Rows.Count;
+        prgUpdateSpreadsheet.Visible = true;
+        prgUpdateSpreadsheet.Value = 1;
+        prgUpdateSpreadsheet.Step = 1;
+        lblStatus.Visible = true;
+
+        for (int i = 1; i < Rng.Columns["A:A", Type.Missing].Rows.Count + 1; i++)
         {
-            if (eRng.Cells[i, 1].Value == null)
+            lblStatus.Text = userMsg;
+            if (Rng.Cells[i, 1].Value == null)
             {
                 break;
             }
             rows++;
+            prgUpdateSpreadsheet.PerformStep();
         }
+        
+        prgUpdateSpreadsheet.Visible = false;
+        prgUpdateSpreadsheet.Enabled = false;
+        lblStatus.Visible = false;
+
         return rows;
+
+    }
+
+    private void ClearComboBox()
+    {
+        cmbPriceColumn.Items.Clear();
+        cmbPriceColumn.Text = "";
+        cmbPriceColumn.Enabled = false;
+    }
+
+    public static bool canParse(string doubleMe)
+    {
+        Double testDouble = 0;
+        bool parsable = double.TryParse(doubleMe, out testDouble);
+        return parsable;
     }
 
     private void CloseWorkbooks(Excel._Workbook uWB, Excel._Workbook eWB)

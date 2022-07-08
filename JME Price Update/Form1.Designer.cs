@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPriceUpdate));
             this.btnSelectUpdateBook = new System.Windows.Forms.Button();
             this.btnSelectExportBook = new System.Windows.Forms.Button();
             this.lblSelectUpdateBook = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.lblContact = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.prgUpdateSpreadsheet = new System.Windows.Forms.ProgressBar();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSelectUpdateBook
@@ -131,7 +133,7 @@
             // 
             this.lblWarning.AutoSize = true;
             this.lblWarning.ForeColor = System.Drawing.Color.Red;
-            this.lblWarning.Location = new System.Drawing.Point(94, 354);
+            this.lblWarning.Location = new System.Drawing.Point(94, 394);
             this.lblWarning.Name = "lblWarning";
             this.lblWarning.Size = new System.Drawing.Size(585, 15);
             this.lblWarning.TabIndex = 8;
@@ -141,7 +143,7 @@
             // lblContact
             // 
             this.lblContact.AutoSize = true;
-            this.lblContact.Location = new System.Drawing.Point(227, 386);
+            this.lblContact.Location = new System.Drawing.Point(227, 426);
             this.lblContact.Name = "lblContact";
             this.lblContact.Size = new System.Drawing.Size(319, 15);
             this.lblContact.TabIndex = 9;
@@ -152,24 +154,36 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Location = new System.Drawing.Point(725, 426);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(69, 15);
+            this.lblVersion.Size = new System.Drawing.Size(63, 15);
             this.lblVersion.TabIndex = 12;
-            this.lblVersion.Text = "version 0.31";
+            this.lblVersion.Text = "version 0.4";
             // 
             // prgUpdateSpreadsheet
             // 
             this.prgUpdateSpreadsheet.Enabled = false;
-            this.prgUpdateSpreadsheet.Location = new System.Drawing.Point(71, 299);
+            this.prgUpdateSpreadsheet.Location = new System.Drawing.Point(71, 315);
             this.prgUpdateSpreadsheet.Name = "prgUpdateSpreadsheet";
             this.prgUpdateSpreadsheet.Size = new System.Drawing.Size(631, 23);
             this.prgUpdateSpreadsheet.TabIndex = 13;
             this.prgUpdateSpreadsheet.Visible = false;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblStatus.Location = new System.Drawing.Point(261, 343);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(250, 15);
+            this.lblStatus.TabIndex = 14;
+            this.lblStatus.Text = "Status";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStatus.Visible = false;
             // 
             // FrmPriceUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.prgUpdateSpreadsheet);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblContact);
@@ -182,6 +196,7 @@
             this.Controls.Add(this.lblSelectUpdateBook);
             this.Controls.Add(this.btnSelectExportBook);
             this.Controls.Add(this.btnSelectUpdateBook);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmPriceUpdate";
             this.Text = "JME Price Update Import Generator";
             this.ResumeLayout(false);
@@ -205,5 +220,6 @@
         private Label lblContact;
         private Label lblVersion;
         private ProgressBar prgUpdateSpreadsheet;
+        private Label lblStatus;
     }
 }

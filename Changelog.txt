@@ -1,4 +1,13 @@
-Version 0.31
+Version 0.4 7/8/2022
+- BUGFIX: Moved combobox clearing code into its own function and add additional call to it when user hits the select update sheet button
+- BUGFIX: Check for Excel formula errors in the update sheet and replace them with a string warning the user
+- FEATURE: Added status message to give user better idea of what is going on
+- FEATURE: Now showing progress bar for counting processes
+- FEATURE: Added an icon
+- Replaced several checks on the length of the used range with the variables calling the howManyRows function
+- Fixed my VB-ish habit of capitalizing types
+
+Version 0.31 7/7/2022
 - Added a progress bar
 - Removed "be patient" text
 - Disabled button while update process is running
