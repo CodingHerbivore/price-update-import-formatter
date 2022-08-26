@@ -3,6 +3,8 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using System.Runtime.InteropServices;
+
 namespace JME_Price_Update;
 
 public partial class FrmPriceUpdate : Form
@@ -56,13 +58,17 @@ public partial class FrmPriceUpdate : Form
                 cmbPriceColumn.Enabled = true;
                 cmbPriceColumn.Text = "Select Price Column...";
 
-                // Close our spreadsheet
+                // Close our spreadsheet                
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                Marshal.ReleaseComObject(oRng);
+                Marshal.ReleaseComObject(oSheet);
+
                 oWB.Close();
+                Marshal.ReleaseComObject(oWB);
                 oXL.Quit();
-                oXL = null;
-                oWB = null;
-                oSheet = null;
-                oRng = null;
+                Marshal.ReleaseComObject(oXL);
             }
             catch (Exception ex)
             {
@@ -369,6 +375,10 @@ public partial class FrmPriceUpdate : Form
                     else
                     {
                         eRng.Cells[i, 17].Value = nPrice;
+                        if(nMessage != null)
+                        {
+                            eRng.Cells[i, 18].Value = nMessage;
+                        }
                     }
                 }
                 /*
@@ -382,24 +392,29 @@ public partial class FrmPriceUpdate : Form
                 updateProgressBar();
             }
 
-            /*
-             * **** DEBUG: Remove when deployed ****
-             */
-            //MessageBox.Show(PartNums);
-            // END DEBUG
+            // Close our spreadsheet                
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            Marshal.ReleaseComObject(uRng);
+            Marshal.ReleaseComObject(eRng);
+            Marshal.ReleaseComObject(uSheet);
+            Marshal.ReleaseComObject(eSheet);
+            uWB.Save();
             uWB.Close();
+            Marshal.ReleaseComObject(uWB);
             eWB.Save();
             eWB.Close();
+            Marshal.ReleaseComObject(eWB);
             oXL.Quit();
-
+            Marshal.ReleaseComObject(oXL);
+            
+            MessageBox.Show("Spreadsheet updated");
         }
         catch (Exception ex)
         {
             MessageBox.Show("Error: " + ex);
             MessageBox.Show("You may need to kill Excel from Windows Task Manager to unlock the workbooks");
         }
-
-        MessageBox.Show("Spreadsheet updated");
     }
 
     private void updateProgressBar ()

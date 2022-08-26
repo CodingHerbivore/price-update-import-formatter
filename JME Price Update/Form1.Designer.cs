@@ -39,7 +39,6 @@
             this.ofdUpdateBook = new System.Windows.Forms.OpenFileDialog();
             this.ofdExportBook = new System.Windows.Forms.OpenFileDialog();
             this.cmbPriceColumn = new System.Windows.Forms.ComboBox();
-            this.lblWarning = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.prgUpdateSpreadsheet = new System.Windows.Forms.ProgressBar();
@@ -129,17 +128,6 @@
             this.cmbPriceColumn.Size = new System.Drawing.Size(224, 23);
             this.cmbPriceColumn.TabIndex = 7;
             // 
-            // lblWarning
-            // 
-            this.lblWarning.AutoSize = true;
-            this.lblWarning.ForeColor = System.Drawing.Color.Red;
-            this.lblWarning.Location = new System.Drawing.Point(94, 394);
-            this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(585, 15);
-            this.lblWarning.TabIndex = 8;
-            this.lblWarning.Text = "TESTING VERSION: This software is pre-release test version. Use at your own risk," +
-    " your safety is not guaranteed.";
-            // 
             // lblContact
             // 
             this.lblContact.AutoSize = true;
@@ -156,7 +144,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(63, 15);
             this.lblVersion.TabIndex = 12;
-            this.lblVersion.Text = "version 0.4";
+            this.lblVersion.Text = "version 1.0";
             // 
             // prgUpdateSpreadsheet
             // 
@@ -187,7 +175,6 @@
             this.Controls.Add(this.prgUpdateSpreadsheet);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblContact);
-            this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.cmbPriceColumn);
             this.Controls.Add(this.btnUpdatePrices);
             this.Controls.Add(this.lblExportBook);
@@ -216,7 +203,6 @@
         private OpenFileDialog ofdUpdateBook;
         private OpenFileDialog ofdExportBook;
         private ComboBox cmbPriceColumn;
-        private Label lblWarning;
         private Label lblContact;
         private Label lblVersion;
         private ProgressBar prgUpdateSpreadsheet;

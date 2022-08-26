@@ -36,3 +36,4 @@ C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price 
 C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.pdb
 C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Debug\net6.0-windows\JME Price Update.genruntimeconfig.cache
 C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Debug\net6.0-windows\ref\JME Price Update.dll
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Debug\net6.0-windows\Changelog.txt
