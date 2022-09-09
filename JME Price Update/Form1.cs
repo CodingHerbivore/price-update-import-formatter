@@ -302,7 +302,7 @@ public partial class FrmPriceUpdate : Form
                             nPrice = currentPrice;
                             nMessage = "No child has new Price";
                             eRng.Cells[i, 18].Value = nMessage;
-                            eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbRed;
+                            eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbYellow;
                         }
 
                         // Write value to spreadsheet
@@ -346,7 +346,10 @@ public partial class FrmPriceUpdate : Form
                 {
                     nPrice = currentPrice;
                     nMessage = "Not Found";
+                    eRng.Cells[i, 18].Value = nMessage;
                     eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbYellow;
+                    updateProgressBar();
+                    continue;
                 }
 
                 // Change background color to red if nPrice isn't a number (if it's CFP or whatevs)
