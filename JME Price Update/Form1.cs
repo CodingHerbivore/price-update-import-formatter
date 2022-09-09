@@ -88,7 +88,7 @@ public partial class FrmPriceUpdate : Form
 
             // Assign the file to a variable
             string ExportBook = ofdExportBook.FileName;
-
+            chkWarnExcessive.Enabled = true;
         }
     }
 
@@ -133,6 +133,7 @@ public partial class FrmPriceUpdate : Form
             prgUpdateSpreadsheet.Visible = false;
             prgUpdateSpreadsheet.Enabled = false;
             btnUpdatePrices.Enabled = true;
+            chkWarnExcessive.Enabled = false;
             lblStatus.Visible = false;
         }
     }

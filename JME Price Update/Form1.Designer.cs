@@ -172,6 +172,7 @@
             this.chkWarnExcessive.AutoSize = true;
             this.chkWarnExcessive.Checked = true;
             this.chkWarnExcessive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWarnExcessive.Enabled = false;
             this.chkWarnExcessive.Location = new System.Drawing.Point(451, 197);
             this.chkWarnExcessive.Name = "chkWarnExcessive";
             this.chkWarnExcessive.Size = new System.Drawing.Size(198, 19);
