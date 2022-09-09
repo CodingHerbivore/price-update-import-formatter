@@ -1,7 +1,8 @@
-Version 1.2 8/26/2022
+Version 1.2 9/9/2022
 - Redesigned icon
 - BUGFIX: Fixed the size of the second select button
 - BUGFIX: Fixed issue where messages weren't appearing for Rules
+- BUGFIX: Fixed background colors not being correctly added to .xlsx files
 - FEATURE: Added optional warnings for excessive price changes
 
 Version 1.1 8/26/2022
