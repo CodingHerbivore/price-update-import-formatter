@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>dollar.ico</ApplicationIcon>
+    <ApplicationIcon>price update icon-4-1.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="dollar.ico" />
+    <Content Include="price update icon-4-1.ico" />
   </ItemGroup>
 
   <ItemGroup>

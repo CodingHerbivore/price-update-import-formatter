@@ -43,6 +43,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.prgUpdateSpreadsheet = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.chkWarnExcessive = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnSelectUpdateBook
@@ -59,7 +60,7 @@
             // 
             this.btnSelectExportBook.Location = new System.Drawing.Point(667, 168);
             this.btnSelectExportBook.Name = "btnSelectExportBook";
-            this.btnSelectExportBook.Size = new System.Drawing.Size(75, 20);
+            this.btnSelectExportBook.Size = new System.Drawing.Size(75, 23);
             this.btnSelectExportBook.TabIndex = 1;
             this.btnSelectExportBook.Text = "Select";
             this.btnSelectExportBook.UseVisualStyleBackColor = true;
@@ -144,7 +145,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(63, 15);
             this.lblVersion.TabIndex = 12;
-            this.lblVersion.Text = "version 1.0";
+            this.lblVersion.Text = "version 1.2";
             // 
             // prgUpdateSpreadsheet
             // 
@@ -166,11 +167,24 @@
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblStatus.Visible = false;
             // 
+            // chkWarnExcessive
+            // 
+            this.chkWarnExcessive.AutoSize = true;
+            this.chkWarnExcessive.Checked = true;
+            this.chkWarnExcessive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWarnExcessive.Location = new System.Drawing.Point(451, 197);
+            this.chkWarnExcessive.Name = "chkWarnExcessive";
+            this.chkWarnExcessive.Size = new System.Drawing.Size(198, 19);
+            this.chkWarnExcessive.TabIndex = 15;
+            this.chkWarnExcessive.Text = "Warn on price changes over 25%";
+            this.chkWarnExcessive.UseVisualStyleBackColor = true;
+            // 
             // FrmPriceUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chkWarnExcessive);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.prgUpdateSpreadsheet);
             this.Controls.Add(this.lblVersion);
@@ -207,5 +221,6 @@
         private Label lblVersion;
         private ProgressBar prgUpdateSpreadsheet;
         private Label lblStatus;
+        private CheckBox chkWarnExcessive;
     }
 }

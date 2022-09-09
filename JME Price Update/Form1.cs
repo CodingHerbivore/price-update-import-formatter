@@ -346,25 +346,40 @@ public partial class FrmPriceUpdate : Form
                 {
                     nPrice = currentPrice;
                     nMessage = "Not Found";
+                    eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbYellow;
                 }
 
                 // Change background color to red if nPrice isn't a number (if it's CFP or whatevs)
                 if (!canParse(nPrice))
                 {
-                    if (nMessage == "Not Found")
-                    {
-                        eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbRed;
-                    }
-                    else
-                    {
-                        eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbYellow;
-                        nMessage = nPrice;
-                    }
+                    
+                    nMessage = nPrice;
+                    eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbRed;
                     eRng.Cells[i, 18].Value = nMessage;
                     eRng.Cells[i, 17].Value = currentPrice;
+                    continue;
                 }
                 else
                 {
+                    // Warn if price difference is greater than 25%
+                    if (chkWarnExcessive.Checked)
+                    {
+                        double nPriceDbl = Convert.ToDouble(nPrice, CultureInfo.InvariantCulture);
+
+                        if (currentPrice.Contains("[FIXED]"))
+                        {
+                            currentPrice = currentPrice.Replace("[FIXED]", "");
+                        }
+                        
+                        double currentPriceDbl = Convert.ToDouble(currentPrice, CultureInfo.InvariantCulture);
+                        
+                        if (Math.Abs((nPriceDbl-currentPriceDbl)/currentPriceDbl) > 0.25)
+                        {
+                            nMessage = nMessage + "Excessive Change!";
+                            eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbOrange;
+                        }
+                    }
+                    
                     // Write value to spreadsheet
                     string prodType = eRng.Cells[i, 1].Value;
                     prodType = prodType.Trim();
@@ -375,11 +390,8 @@ public partial class FrmPriceUpdate : Form
                     else
                     {
                         eRng.Cells[i, 17].Value = nPrice;
-                        if(nMessage != null)
-                        {
-                            eRng.Cells[i, 18].Value = nMessage;
-                        }
                     }
+                    eRng.Cells[i, 18].Value = nMessage;
                 }
                 /*
                  * **** DEBUG: Remove when deployed ****
