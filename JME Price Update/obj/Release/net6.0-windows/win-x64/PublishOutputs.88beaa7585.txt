@@ -1,0 +1,6 @@
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\publish\win-x64\Changelog.txt
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\publish\win-x64\JME Price Update.exe
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\publish\win-x64\JME Price Update.dll
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\publish\win-x64\JME Price Update.deps.json
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\publish\win-x64\JME Price Update.runtimeconfig.json
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\publish\win-x64\JME Price Update.pdb

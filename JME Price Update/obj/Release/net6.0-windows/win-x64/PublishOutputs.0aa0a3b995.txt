@@ -1,0 +1,3 @@
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\publish\JME Price Update.pdb
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\publish\Changelog.txt
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\publish\JME Price Update.exe

@@ -1,0 +1,24 @@
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\win-x64\JME Price Update.exe
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\win-x64\Changelog.txt
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\win-x64\JME Price Update.deps.json
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\win-x64\JME Price Update.runtimeconfig.json
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\win-x64\JME Price Update.dll
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\win-x64\JME Price Update.pdb
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.csproj.AssemblyReference.cache
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.csproj.ResolveComReference.cache
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME_Price_Update.FrmPriceUpdate.resources
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.csproj.GenerateResource.cache
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.AssemblyInfoInputs.cache
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.AssemblyInfo.cs
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.csproj.CoreCompileInputs.cache
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.dll
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\refint\JME Price Update.dll
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.pdb
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.genruntimeconfig.cache
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\ref\JME Price Update.dll
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\win-x64\JME Price Update.dll.manifest
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\win-x64\JME Price Update.application
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.dll.manifest
+C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\win-x64\JME Price Update.application
