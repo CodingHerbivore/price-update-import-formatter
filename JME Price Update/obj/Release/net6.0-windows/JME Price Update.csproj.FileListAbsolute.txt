@@ -18,3 +18,23 @@ C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price 
 C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.genruntimeconfig.cache
 C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\ref\JME Price Update.dll
 C:\Users\abullis\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\Changelog.txt
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\JME Price Update.exe
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\Changelog.txt
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\JME Price Update.deps.json
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\JME Price Update.runtimeconfig.json
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\JME Price Update.dll
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\bin\Release\net6.0-windows\JME Price Update.pdb
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.csproj.AssemblyReference.cache
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.csproj.ResolveComReference.cache
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME_Price_Update.FrmPriceUpdate.resources
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.csproj.GenerateResource.cache
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.AssemblyInfoInputs.cache
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.AssemblyInfo.cs
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.csproj.CoreCompileInputs.cache
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.dll
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\refint\JME Price Update.dll
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.pdb
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\JME Price Update.genruntimeconfig.cache
+C:\Users\abullis\OneDrive - jmesales.com\Documents\price update\price-update-import-formatter\JME Price Update\obj\Release\net6.0-windows\ref\JME Price Update.dll

@@ -1,3 +1,13 @@
+Version 1.2.3 2/27/2023
+- BUGFIX: Fixed issue where blanks in the current price column would crash the program if user had excessive price warning checked
+- Feature: Program now autoselects the price column when correctly named by pricing team
+
+Version 1.2.2 9/19/2022
+- BUGFIX: Fixed issue where not found products weren't carrying over the current price.
+
+Version 1.2.1 9/12/2022
+- Created installer so program could be installed/uninstalled like any other
+
 Version 1.2 9/9/2022
 - Redesigned icon
 - BUGFIX: Fixed the size of the second select button

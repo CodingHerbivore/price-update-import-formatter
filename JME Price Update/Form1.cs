@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.Xml;
 
 namespace JME_Price_Update;
 
@@ -43,6 +44,7 @@ public partial class FrmPriceUpdate : Form
                 oWB = oXL.Workbooks.Open(UpdateBook);
                 oSheet = oWB.Worksheets[1];
                 oRng = oSheet.UsedRange;
+                string foundPriceCol = "";
 
                 // Get column headers and stick them in the combo box
                 // I don't know why, but this only works if the condition is "i < whatevs", so that's why I'm adding 1
@@ -51,12 +53,28 @@ public partial class FrmPriceUpdate : Form
                     string oAddress = oRng.Cells[1, i].Address[false, false, Excel.XlReferenceStyle.xlA1];
                     string PriceColumnOption = oAddress + ": " + oRng.Cells[1, i].Value;
 
+                    // Check to see if this is a price column. If so, set it as our found price column
+                    if (PriceColumnOption.ToLower().IndexOf(": price") != -1)
+                    {
+                        foundPriceCol = PriceColumnOption;
+                    }
+
                     cmbPriceColumn.Items.Add(PriceColumnOption);
                 }
 
                 // Activate the combobox
                 cmbPriceColumn.Enabled = true;
-                cmbPriceColumn.Text = "Select Price Column...";
+
+                // Automagically set the price column if we found one.
+                if (foundPriceCol != "")
+                {
+                    // Check if the option for Price
+                    cmbPriceColumn.SelectedItem = foundPriceCol;
+                }
+                else
+                {
+                    cmbPriceColumn.Text = "Select Price Column...";
+                }
 
                 // Close our spreadsheet                
                 GC.Collect();
@@ -72,16 +90,16 @@ public partial class FrmPriceUpdate : Form
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex );
+                MessageBox.Show("Error: " + ex);
                 MessageBox.Show("You may need to kill Excel from Windows Task Manager to unlock the workbooks");
             }
-          
+
         }
     }
 
     private void btnSelectExportBook_Click(object sender, EventArgs e)
     {
-        if(ofdExportBook.ShowDialog() == DialogResult.OK)
+        if (ofdExportBook.ShowDialog() == DialogResult.OK)
         {
             // Display the file path in the txt box
             txtExportBook.Text = ofdExportBook.FileName;
@@ -106,7 +124,7 @@ public partial class FrmPriceUpdate : Form
             errorMessage = string.Concat(errorMessage, "You must select the column with the price.\n");
         }
 
-        if (txtExportBook.Text == "" )
+        if (txtExportBook.Text == "")
         {
             errorMessage = string.Concat(errorMessage, "You must select the exported workbook from BigCommerce. ");
         }
@@ -121,14 +139,14 @@ public partial class FrmPriceUpdate : Form
         else
         {
             btnUpdatePrices.Enabled = false;
-            
+
             UpdatePrice();
 
             // Clean up
             txtUpdateBook.Text = "";
-            
+
             ClearComboBox();
-            
+
             txtExportBook.Text = "";
             prgUpdateSpreadsheet.Visible = false;
             prgUpdateSpreadsheet.Enabled = false;
@@ -174,11 +192,11 @@ public partial class FrmPriceUpdate : Form
 
             // Get the user-selected price column and add 1 since Excel isn't zero-based
             int priceColumn = cmbPriceColumn.SelectedIndex + 1;
-            
+
             // Working with the Update workbook
             // Create dictionary of part numbers and prices from the update workbook
             var uPrices = new Dictionary<string, string>();
-            
+
             for (int i = 1; i < actualUpdateRows + 1; i++)
             {
 
@@ -204,20 +222,10 @@ public partial class FrmPriceUpdate : Form
                 else
                 {
                     continue;
-                }    
+                }
             }
-
-            // DEBUG: remove when finished
-            /* String updates = "";
-            foreach (KeyValuePair<String,String> item in uPrices)
-            {
-                updates = String.Concat(updates, item);
-                updates = String.Concat(updates, "\n");
-            }
-            MessageBox.Show(updates);*/
 
             // Working with the Exported workbook
-            //string PartNums = "";
             for (int i = 2; i < actualRows + 1; i++)
             {
                 string SKU = eRng.Cells[i, 4].Value;
@@ -229,7 +237,7 @@ public partial class FrmPriceUpdate : Form
                 {
                     currentPrice = eRng.Cells[i, 7].Value.ToString();
                 }
-                
+
                 // Check if there's anything in the part number column, if not then skip
                 if (SKU == null)
                 {
@@ -237,7 +245,7 @@ public partial class FrmPriceUpdate : Form
                     {
                         // Create list to hold family member prices
                         List<double> myFamily = new List<double>();
-                        
+
                         // Get children
                         for (int j = i + 1; j < actualRows + 1; j++)
                         {
@@ -258,7 +266,7 @@ public partial class FrmPriceUpdate : Form
                                     {
                                         // "Call for pricing" and "Not Found" don't count, so we need to go past them                                    
                                         if (canParse(uPrices[childSKU]))
-                                        { 
+                                        {
                                             // Price comes over as a string, but we need it to be a double
                                             double childPrice = Convert.ToDouble(uPrices[childSKU], CultureInfo.InvariantCulture);
                                             myFamily.Add(childPrice);
@@ -283,7 +291,7 @@ public partial class FrmPriceUpdate : Form
                                     }
                                 }
                             }
-                            else if (cellValue == "Product") 
+                            else if (cellValue == "Product")
                             {
                                 break;
                             }
@@ -298,7 +306,7 @@ public partial class FrmPriceUpdate : Form
                             double minPrice = myFamily.Min();
                             nPrice = minPrice.ToString();
                         }
-                        else 
+                        else
                         {
                             nPrice = currentPrice;
                             nMessage = "No child has new Price";
@@ -312,7 +320,7 @@ public partial class FrmPriceUpdate : Form
                         /*PartNums = String.Concat(PartNums, "Parent");
                         PartNums = String.Concat(PartNums, ", " + nPrice);
                         PartNums = String.Concat(PartNums, "\n");*/
-                        
+
                         updateProgressBar();
                         continue;
                     }
@@ -329,7 +337,7 @@ public partial class FrmPriceUpdate : Form
                 {
                     SKU = SKU.Replace("GRID_", "");
                 }
-                
+
                 // Remove lowercase letter indicating duplicate product
                 char lastLetter = SKU[SKU.Length - 1];
 
@@ -347,6 +355,7 @@ public partial class FrmPriceUpdate : Form
                 {
                     nPrice = currentPrice;
                     nMessage = "Not Found";
+                    eRng.Cells[i, 17].Value = nPrice;
                     eRng.Cells[i, 18].Value = nMessage;
                     eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbYellow;
                     updateProgressBar();
@@ -356,7 +365,7 @@ public partial class FrmPriceUpdate : Form
                 // Change background color to red if nPrice isn't a number (if it's CFP or whatevs)
                 if (!canParse(nPrice))
                 {
-                    
+
                     nMessage = nPrice;
                     eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbRed;
                     eRng.Cells[i, 18].Value = nMessage;
@@ -368,22 +377,31 @@ public partial class FrmPriceUpdate : Form
                     // Warn if price difference is greater than 25%
                     if (chkWarnExcessive.Checked)
                     {
+                        // Price comes over as a string, but we need it to be a double
                         double nPriceDbl = Convert.ToDouble(nPrice, CultureInfo.InvariantCulture);
 
                         if (currentPrice.Contains("[FIXED]"))
                         {
                             currentPrice = currentPrice.Replace("[FIXED]", "");
                         }
-                        
-                        double currentPriceDbl = Convert.ToDouble(currentPrice, CultureInfo.InvariantCulture);
-                        
-                        if (Math.Abs((nPriceDbl-currentPriceDbl)/currentPriceDbl) > 0.25)
+
+                        if (canParse(currentPrice))
                         {
-                            nMessage = nMessage + "Excessive Change!";
-                            eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbOrange;
+                            // Price comes over as a string, but we need it to be a double
+                            double currentPriceDbl = Convert.ToDouble(currentPrice, CultureInfo.InvariantCulture);
+
+                            if (Math.Abs((nPriceDbl - currentPriceDbl) / currentPriceDbl) > 0.25)
+                            {
+                                nMessage = nMessage + "Excessive Change!";
+                                eRng.Cells[i, 18].Interior.Color = Excel.XlRgbColor.rgbOrange;
+                            }
+                        }
+                        else
+                        {
+                            continue;
                         }
                     }
-                    
+
                     // Write value to spreadsheet
                     string prodType = eRng.Cells[i, 1].Value;
                     prodType = prodType.Trim();
@@ -397,13 +415,6 @@ public partial class FrmPriceUpdate : Form
                     }
                     eRng.Cells[i, 18].Value = nMessage;
                 }
-                /*
-                 * **** DEBUG: Remove when deployed ****
-                 */
-                /*PartNums = String.Concat(PartNums, SKU);
-                PartNums = String.Concat(PartNums, ", " + nPrice);
-                PartNums = String.Concat(PartNums, "\n");*/
-                // END DEBUG
 
                 updateProgressBar();
             }
@@ -423,7 +434,7 @@ public partial class FrmPriceUpdate : Form
             Marshal.ReleaseComObject(eWB);
             oXL.Quit();
             Marshal.ReleaseComObject(oXL);
-            
+
             MessageBox.Show("Spreadsheet updated");
         }
         catch (Exception ex)
@@ -433,7 +444,7 @@ public partial class FrmPriceUpdate : Form
         }
     }
 
-    private void updateProgressBar ()
+    private void updateProgressBar()
     {
         // Increment progress bar
         prgUpdateSpreadsheet.PerformStep();
@@ -463,7 +474,7 @@ public partial class FrmPriceUpdate : Form
             rows++;
             prgUpdateSpreadsheet.PerformStep();
         }
-        
+
         prgUpdateSpreadsheet.Visible = false;
         prgUpdateSpreadsheet.Enabled = false;
         lblStatus.Visible = false;
@@ -488,6 +499,6 @@ public partial class FrmPriceUpdate : Form
 
     private void CloseWorkbooks(Excel._Workbook uWB, Excel._Workbook eWB)
     {
-        
+
     }
 }
