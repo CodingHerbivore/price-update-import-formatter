@@ -49,10 +49,9 @@
             // 
             // btnSelectUpdateBook
             // 
-            btnSelectUpdateBook.Location = new Point(762, 70);
-            btnSelectUpdateBook.Margin = new Padding(3, 4, 3, 4);
+            btnSelectUpdateBook.Location = new Point(667, 55);
             btnSelectUpdateBook.Name = "btnSelectUpdateBook";
-            btnSelectUpdateBook.Size = new Size(86, 29);
+            btnSelectUpdateBook.Size = new Size(75, 23);
             btnSelectUpdateBook.TabIndex = 0;
             btnSelectUpdateBook.Text = "Select";
             btnSelectUpdateBook.UseVisualStyleBackColor = true;
@@ -60,10 +59,9 @@
             // 
             // btnSelectExportBook
             // 
-            btnSelectExportBook.Location = new Point(762, 213);
-            btnSelectExportBook.Margin = new Padding(3, 4, 3, 4);
+            btnSelectExportBook.Location = new Point(667, 168);
             btnSelectExportBook.Name = "btnSelectExportBook";
-            btnSelectExportBook.Size = new Size(86, 29);
+            btnSelectExportBook.Size = new Size(75, 23);
             btnSelectExportBook.TabIndex = 1;
             btnSelectExportBook.Text = "Select";
             btnSelectExportBook.UseVisualStyleBackColor = true;
@@ -72,45 +70,42 @@
             // lblSelectUpdateBook
             // 
             lblSelectUpdateBook.AutoSize = true;
-            lblSelectUpdateBook.Location = new Point(37, 35);
+            lblSelectUpdateBook.Location = new Point(32, 28);
             lblSelectUpdateBook.Name = "lblSelectUpdateBook";
-            lblSelectUpdateBook.Size = new Size(154, 19);
+            lblSelectUpdateBook.Size = new Size(132, 15);
             lblSelectUpdateBook.TabIndex = 2;
             lblSelectUpdateBook.Text = "Price Update Workbook";
             // 
             // txtUpdateBook
             // 
             txtUpdateBook.Enabled = false;
-            txtUpdateBook.Location = new Point(89, 70);
-            txtUpdateBook.Margin = new Padding(3, 4, 3, 4);
+            txtUpdateBook.Location = new Point(78, 55);
             txtUpdateBook.Name = "txtUpdateBook";
-            txtUpdateBook.Size = new Size(652, 26);
+            txtUpdateBook.Size = new Size(571, 23);
             txtUpdateBook.TabIndex = 3;
             // 
             // txtExportBook
             // 
             txtExportBook.Enabled = false;
-            txtExportBook.Location = new Point(89, 213);
-            txtExportBook.Margin = new Padding(3, 4, 3, 4);
+            txtExportBook.Location = new Point(78, 168);
             txtExportBook.Name = "txtExportBook";
-            txtExportBook.Size = new Size(652, 26);
+            txtExportBook.Size = new Size(571, 23);
             txtExportBook.TabIndex = 4;
             // 
             // lblExportBook
             // 
             lblExportBook.AutoSize = true;
-            lblExportBook.Location = new Point(37, 182);
+            lblExportBook.Location = new Point(32, 144);
             lblExportBook.Name = "lblExportBook";
-            lblExportBook.Size = new Size(219, 19);
+            lblExportBook.Size = new Size(191, 15);
             lblExportBook.TabIndex = 5;
             lblExportBook.Text = "BigCommerce Exported Workbook";
             // 
             // btnUpdatePrices
             // 
-            btnUpdatePrices.Location = new Point(370, 299);
-            btnUpdatePrices.Margin = new Padding(3, 4, 3, 4);
+            btnUpdatePrices.Location = new Point(324, 236);
             btnUpdatePrices.Name = "btnUpdatePrices";
-            btnUpdatePrices.Size = new Size(143, 44);
+            btnUpdatePrices.Size = new Size(125, 35);
             btnUpdatePrices.TabIndex = 6;
             btnUpdatePrices.Text = "Update Pricing";
             btnUpdatePrices.UseVisualStyleBackColor = true;
@@ -130,46 +125,44 @@
             // 
             cmbPriceColumn.Enabled = false;
             cmbPriceColumn.FormattingEnabled = true;
-            cmbPriceColumn.Location = new Point(486, 106);
-            cmbPriceColumn.Margin = new Padding(3, 4, 3, 4);
+            cmbPriceColumn.Location = new Point(425, 84);
             cmbPriceColumn.Name = "cmbPriceColumn";
-            cmbPriceColumn.Size = new Size(255, 27);
+            cmbPriceColumn.Size = new Size(224, 23);
             cmbPriceColumn.TabIndex = 7;
             // 
             // lblContact
             // 
             lblContact.AutoSize = true;
-            lblContact.Location = new Point(259, 540);
+            lblContact.Location = new Point(227, 426);
             lblContact.Name = "lblContact";
-            lblContact.Size = new Size(366, 19);
+            lblContact.Size = new Size(319, 15);
             lblContact.TabIndex = 9;
             lblContact.Text = "Email Andrew B. with bugs or issues: abullis@jmesales.com";
             // 
             // lblVersion
             // 
             lblVersion.AutoSize = true;
-            lblVersion.Location = new Point(816, 540);
+            lblVersion.Location = new Point(714, 426);
             lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(87, 19);
+            lblVersion.Size = new Size(72, 15);
             lblVersion.TabIndex = 12;
-            lblVersion.Text = "version 1.2.3";
+            lblVersion.Text = "version 1.3.0";
             // 
             // prgUpdateSpreadsheet
             // 
             prgUpdateSpreadsheet.Enabled = false;
-            prgUpdateSpreadsheet.Location = new Point(81, 399);
-            prgUpdateSpreadsheet.Margin = new Padding(3, 4, 3, 4);
+            prgUpdateSpreadsheet.Location = new Point(71, 315);
             prgUpdateSpreadsheet.Name = "prgUpdateSpreadsheet";
-            prgUpdateSpreadsheet.Size = new Size(721, 29);
+            prgUpdateSpreadsheet.Size = new Size(631, 23);
             prgUpdateSpreadsheet.TabIndex = 13;
             prgUpdateSpreadsheet.Visible = false;
             // 
             // lblStatus
             // 
             lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblStatus.Location = new Point(298, 434);
+            lblStatus.Location = new Point(261, 343);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(286, 19);
+            lblStatus.Size = new Size(250, 15);
             lblStatus.TabIndex = 14;
             lblStatus.Text = "Status";
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
@@ -181,10 +174,9 @@
             chkWarnExcessive.Checked = true;
             chkWarnExcessive.CheckState = CheckState.Checked;
             chkWarnExcessive.Enabled = false;
-            chkWarnExcessive.Location = new Point(515, 250);
-            chkWarnExcessive.Margin = new Padding(3, 4, 3, 4);
+            chkWarnExcessive.Location = new Point(451, 197);
             chkWarnExcessive.Name = "chkWarnExcessive";
-            chkWarnExcessive.Size = new Size(229, 23);
+            chkWarnExcessive.Size = new Size(198, 19);
             chkWarnExcessive.TabIndex = 15;
             chkWarnExcessive.Text = "Warn on price changes over 25%";
             chkWarnExcessive.UseVisualStyleBackColor = true;
@@ -192,17 +184,17 @@
             // lblPriceCol
             // 
             lblPriceCol.AutoSize = true;
-            lblPriceCol.Location = new Point(390, 109);
+            lblPriceCol.Location = new Point(341, 86);
             lblPriceCol.Name = "lblPriceCol";
-            lblPriceCol.Size = new Size(93, 19);
+            lblPriceCol.Size = new Size(82, 15);
             lblPriceCol.TabIndex = 16;
             lblPriceCol.Text = "Price Column:";
             // 
             // FrmPriceUpdate
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 570);
+            ClientSize = new Size(800, 450);
             Controls.Add(lblPriceCol);
             Controls.Add(chkWarnExcessive);
             Controls.Add(lblStatus);
@@ -218,7 +210,6 @@
             Controls.Add(btnSelectExportBook);
             Controls.Add(btnSelectUpdateBook);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmPriceUpdate";
             Text = "JME Price Update Import Generator";
             ResumeLayout(false);

@@ -228,14 +228,14 @@ public partial class FrmPriceUpdate : Form
             // Working with the Exported workbook
             for (int i = 2; i < actualRows + 1; i++)
             {
-                string SKU = eRng.Cells[i, 4].Value;
+                string SKU = eRng.Cells[i, 3].Value;
                 string currentPrice = "";
                 string nPrice = "";
                 string nMessage = "";
 
-                if (eRng.Cells[i, 7].Value != null)
+                if (eRng.Cells[i, 6].Value != null)
                 {
-                    currentPrice = eRng.Cells[i, 7].Value.ToString();
+                    currentPrice = eRng.Cells[i, 6].Value.ToString();
                 }
 
                 // Check if there's anything in the part number column, if not then skip
